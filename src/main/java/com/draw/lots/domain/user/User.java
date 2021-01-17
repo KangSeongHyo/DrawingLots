@@ -41,7 +41,7 @@ public class User {
     private String name;
 
     @ColumnDefault("0")
-    private long amount;
+    private int amount;
     
     @CreatedDate
     private LocalDateTime createdDate;
