@@ -45,7 +45,7 @@ public class UserRepositoryTest {
     @Test
     public void 누적금액업데이트() {
 
-        List<Long> pickList = Arrays.asList(1L).stream().collect(Collectors.toList());
+        List<Long> pickList = Arrays.asList(1L);
         
         RequestDTO requestDTO = RequestDTO.builder().bet(1000).build();
 

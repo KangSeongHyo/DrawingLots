@@ -13,14 +13,14 @@ public class DrawService {
     private static final int FIRST = 0;
     
 
-    public List<String> drawingLots(List<String> nameList, int count) {
+    public List<Long> drawingLots(List<Long> idList, int count) {
         
         List<Integer> numberList = new ArrayList<>();
 
         int people = 0;
         
         while (people != count) {
-            int number = new Random().nextInt(nameList.size());
+            int number = new Random().nextInt(idList.size());
             if(people != FIRST){
                 if(numberList.contains(number)){
                     continue;
@@ -30,8 +30,8 @@ public class DrawService {
             people++;
         }
 
-        List<String> pickList = numberList.stream()
-                  .map(number->nameList.get(number))
+        List<Long> pickList = numberList.stream()
+                  .map(number->idList.get(number))
                   .collect(Collectors.toList());
         
         return pickList;

@@ -48,7 +48,7 @@ public class UserJpaTest {
     @Order(2)
     public void 누적금액JPA테스트() {
 
-        List<Long> pickList = Arrays.asList(1L,2L).stream().collect(Collectors.toList());
+        List<Long> pickList = Arrays.asList(1L,2L);
         int bet = 5000;
 
         String jpql = "UPDATE User u SET u.amount = u.amount + :bet WHERE u.id IN :pickList";

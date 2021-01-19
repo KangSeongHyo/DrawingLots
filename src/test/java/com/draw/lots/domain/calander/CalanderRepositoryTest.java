@@ -32,7 +32,7 @@ public class CalanderRepositoryTest {
     @Rollback(false)
     public void 캘린더생성테스트() {
         
-        List<Long> pickList = Arrays.asList(1L,2L).stream().collect(Collectors.toList());
+        List<Long> pickList = Arrays.asList(1L,2L);
         String title = "점심 커피";
         int bet = 5000;
         int year = 2020;
