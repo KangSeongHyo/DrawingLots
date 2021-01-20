@@ -18,6 +18,23 @@ public class ViewController {
         
         return modelAndView;
     }
+
+    @GetMapping("/create/user")
+    public ModelAndView viewRegister() {
+        
+        ModelAndView modelAndView = new ModelAndView("user");
+        
+        return modelAndView;
+    }
+
+    @GetMapping("/draw")
+    public ModelAndView viewDrawingLots() {
+        
+        ModelAndView modelAndView = new ModelAndView("draw");
+        
+        return modelAndView;
+    }
+
     
     
 }
