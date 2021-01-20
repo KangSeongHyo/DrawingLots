@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body style="background-color: rgb(220, 233, 233);">
+    <div class="container">
+        <h1 class="font-weight-bolder mt-5">유저 등록</h1>
+        <p><abbr>이름은 중복 불가능입니다.</abbr><mark>Only 한글</mark></p>
+        <form class="was-validated" onsubmit="return false;">
+          <div class="form-group">
+            <label class="font-weight-bolder" for="uname">Username:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter username" name="name" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">입력해주십쇼</div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" onclick="createUser(name.value)">등록</button>
+        </form>
+      </div>
+  </body>
+  <script>
+      function createUser(name) {
+        let id = document.getElementById("name").value;
+
+        console.log(id);
+        fetch("")
+        .catch(()=>{
+
+        });
+      }
+
+  </script>
+</html>
