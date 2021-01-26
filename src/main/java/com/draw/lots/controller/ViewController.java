@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ViewController {
 
     @GetMapping("/calendar")
-    public ModelAndView viewCalendar() {
+    public ModelAndView viewCalendar() throws Exception{
         
         ModelAndView modelAndView = new ModelAndView("calendar");
         
@@ -34,7 +34,5 @@ public class ViewController {
         
         return modelAndView;
     }
-
-    
     
 }

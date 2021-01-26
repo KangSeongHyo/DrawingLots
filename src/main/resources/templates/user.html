@@ -20,20 +20,32 @@
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">입력해주십쇼</div>
           </div>
-          <button type="submit" class="btn btn-primary w-100" onclick="createUser(name.value)">등록</button>
+          <button type="submit" class="btn btn-primary w-100" onclick="createUser()">등록</button>
         </form>
       </div>
   </body>
   <script>
-      function createUser(name) {
-        let id = document.getElementById("name").value;
+    
+      function createUser() {
+        let name = document.getElementById('name').value;
 
-        console.log(id);
-        fetch("")
-        .catch(()=>{
-
-        });
+        fetch("/api/v1/user",{
+          method : 'POST',
+          body : JSON.stringify({name}),
+          headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+          if(res.ok){
+            document.location = "/"
+          }else{
+            return res.json()
+          }
+        }).then(json => {  
+          if(json.errCode == 'DUP'){
+            alert("중복되는 이름입니다.");
+          }else{
+            alert('오류가 발생하였습니다. ['+res.status+']');
+          }
+        })
       }
-
   </script>
 </html>
