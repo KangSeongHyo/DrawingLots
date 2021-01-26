@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import com.draw.lots.controller.dto.RequestDTO;
 import com.draw.lots.domain.user.User;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,18 +31,20 @@ public class UserRepository {
    @Transactional
    public void save(String name) {
         
-     try {
-
-         User userEntity = User.builder().name(name).build();
-
-         em.persist(userEntity);
+     User userEntity = User.builder().name(name).build();
+     em.persist(userEntity);
+    
+   }
+   
+   @Transactional
+   public List<User> findAll() {
         
-     } catch (Exception e) {
-
-         log.error( "유저 생성에 실패했습니다." , e.toString());
-
-     }  
-   }    
+        String jpql = "SELECT u FROM User u";
+        Query createQuery = em.createQuery(jpql);
+        
+        return createQuery.getResultList();
+    
+   } 
 
    @Transactional
    public int updateAmount(List<Long> pickList,RequestDTO requestDTO) {

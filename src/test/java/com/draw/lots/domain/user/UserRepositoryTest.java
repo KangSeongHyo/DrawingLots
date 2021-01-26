@@ -2,6 +2,7 @@ package com.draw.lots.domain.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace=Replace.NONE)
@@ -41,6 +43,20 @@ public class UserRepositoryTest {
         assertEquals(name, user.getName()); 
 
     }
+
+    @Test
+    public void 유저중복테스트() {
+        
+        String name = "김철수";
+
+        userRepository.save(name);
+
+        assertThrows(DataIntegrityViolationException.class, ()->{
+            userRepository.save(name);
+        });
+
+    }
+
 
     @Test
     public void 누적금액업데이트() {
