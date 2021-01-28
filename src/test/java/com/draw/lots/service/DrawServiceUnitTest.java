@@ -3,6 +3,7 @@ package com.draw.lots.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,12 +17,10 @@ public class DrawServiceUnitTest {
     
     private static final int FIRST = 0;
 
-    @MockBean
-    CalendarService calendarService;
-    
 
     @Test
     public void 유저추첨하기(){
+        System.out.println(LocalDateTime.now().getYear());        
        
         List<String> nameList = new ArrayList<>();
         int people = 1;

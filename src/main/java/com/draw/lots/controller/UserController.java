@@ -8,7 +8,6 @@ import com.draw.lots.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +35,7 @@ public class UserController {
     @GetMapping("/search/{name}")
     public ResponseEntity<List<String>> getUserByName(@ModelAttribute RequestDTO requestDTO){
         
-        return ResponseEntity.ok(userService.getNameList(requestDTO));
+        return ResponseEntity.ok(userService.getSearchNameList(requestDTO));
         
     }
 

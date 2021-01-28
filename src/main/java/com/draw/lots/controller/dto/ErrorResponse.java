@@ -1,11 +1,7 @@
 package com.draw.lots.controller.dto;
 
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import org.checkerframework.checker.units.qual.A;
-import org.springframework.http.HttpStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

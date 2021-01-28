@@ -3,7 +3,7 @@ package com.draw.lots.domain.log;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
-import com.draw.lots.domain.log.repository.Log;
+import com.draw.lots.domain.log.Log;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ public class LogJpaTest {
 
         String subject = "아침 커피";
 
-        Log log = Log.builder().subject(subject).build();
+        Log log = Log.builder().title(subject).build();
 
         em.persist(log);
 
-        assertEquals(subject, log.getSubject());
+        assertEquals(subject, log.getTitle());
        
     }
 }

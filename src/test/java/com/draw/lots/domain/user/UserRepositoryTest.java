@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.draw.lots.controller.dto.RequestDTO;
+import com.draw.lots.controller.dto.DrawRequestDTO;
 import com.draw.lots.domain.user.repository.UserRepository;
 
 import org.junit.jupiter.api.Test;
@@ -61,10 +61,10 @@ public class UserRepositoryTest {
     @Test
     public void 누적금액업데이트() {
 
-        List<Long> pickList = Arrays.asList(1L);
+        List<String> pickList = Arrays.asList("김철수","김영희");
         
-        RequestDTO requestDTO = RequestDTO.builder().bet(1000).build();
-
+        DrawRequestDTO requestDTO = DrawRequestDTO.builder().bet(1000).build();
+        
         int result = userRepository.updateAmount(pickList, requestDTO);
 
         assertNotEquals(0,result);

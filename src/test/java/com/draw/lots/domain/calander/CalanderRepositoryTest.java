@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import com.draw.lots.domain.calendar.Calendar;
+import com.draw.lots.domain.calendar.repository.CalendarRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,30 +27,14 @@ import org.springframework.test.annotation.Rollback;
 public class CalanderRepositoryTest {
     
     @Autowired
-    EntityManager em;
+    CalendarRepository calendarRepository;
     
     @Test
     @Rollback(false)
     public void 캘린더생성테스트() {
         
-        List<Long> pickList = Arrays.asList(1L,2L);
-        String title = "점심 커피";
-        int bet = 5000;
-        int year = 2020;
-        int month = 1;
-        int day = 16;
         
-        for(long userId : pickList){
-
-            Calendar calendar = Calendar.builder()
-            .year(year).month(month).day(day)
-            .bet(bet)
-            .userId(userId)
-            .title(title)
-            .build();
-
-            em.persist(calendar);
-        }
+        //calendarRepository.saveList(pickIdList, drawRequestDTO);
              
     }
 }

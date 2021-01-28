@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import com.draw.lots.controller.dto.DrawRequestDTO;
 import com.draw.lots.controller.dto.RequestDTO;
 import com.draw.lots.domain.user.User;
 import com.draw.lots.domain.user.repository.UserRepository;
@@ -27,14 +28,22 @@ public class UserService {
     private final RedisTemplate<String,Object> redisTemplate;
 
     private static final String SEARCH_KEY = "USER_NAME";
+    private static final String ASTERISK  = "*";
     private static final int TIME_LIMIT = 5;
 
     public void createUser(RequestDTO requestDTO) {   
         userRepository.save(requestDTO.getName());
-
+    }
+    public void updateAmount(List<String> pickList,DrawRequestDTO drawRequestDTO){
+        userRepository.updateAmount(pickList, drawRequestDTO);
     }
 
-    public List<String> getNameList(RequestDTO requestDTO){
+    public List<User> getUserList(List<String> pickList){
+       return userRepository.findByNameList(pickList);
+    }
+
+
+    public List<String> getSearchNameList(RequestDTO requestDTO){
 
         HashOperations<String,String,Long> hashOperations= redisTemplate.opsForHash();
         
@@ -46,7 +55,7 @@ public class UserService {
             redisTemplate.expire(SEARCH_KEY,TIME_LIMIT,TimeUnit.SECONDS);
         }
                
-        ScanOptions scanOptions = ScanOptions.scanOptions().match(requestDTO.getName()+"*").build();
+        ScanOptions scanOptions = ScanOptions.scanOptions().match(requestDTO.getName()+ASTERISK).build();
         Cursor<Entry<String,Long>> cursor= hashOperations.scan(SEARCH_KEY, scanOptions);
         List<String> searchList = new ArrayList<>();
 

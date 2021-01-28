@@ -1,9 +1,11 @@
-package com.draw.lots.domain.log.repository;
+package com.draw.lots.domain.log;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -26,9 +28,14 @@ import lombok.NoArgsConstructor;
 public class Log {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String subject;
+    private String title;
+
+    private long bet;
+
+    private String pickName;
 
     @CreatedDate
     private LocalDateTime createdDate;

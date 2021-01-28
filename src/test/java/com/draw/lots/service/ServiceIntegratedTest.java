@@ -1,12 +1,9 @@
 
 package com.draw.lots.service;
 
-import com.draw.lots.controller.dto.RequestDTO;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 
 /**
  * ServiceIntegratedTest
@@ -31,12 +28,6 @@ public class ServiceIntegratedTest {
         int day = 17;
         int bet = 15000;
         String title = "점심값";
-
-        RequestDTO requestDTO = RequestDTO.builder()
-        .year(year)
-        .month(month)
-        .day(day)
-        .build();
     }
     
 }

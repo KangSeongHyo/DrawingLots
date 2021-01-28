@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.draw.lots.controller.dto.RequestDTO;
+import com.draw.lots.controller.dto.DrawRequestDTO;
 import com.draw.lots.domain.user.User;
 
 import org.hibernate.exception.ConstraintViolationException;
@@ -47,18 +47,29 @@ public class UserRepository {
    } 
 
    @Transactional
-   public int updateAmount(List<Long> pickList,RequestDTO requestDTO) {
+   public List<User> findByNameList(List<String> pickList) {
+        
+        String jpql = "SELECT u FROM User u WHERE u.name IN :pickList";
+        Query createQuery = em.createQuery(jpql);
+        createQuery.setParameter("pickList", pickList);
+        
+        return createQuery.getResultList();
+    
+   } 
 
-       String jpql = "UPDATE User u SET u.amount = u.amount + :bet WHERE u.id IN :pickList";
+   @Transactional
+   public int updateAmount(List<String> pickList,DrawRequestDTO drawRequestDTO) {
+
+       String jpql = "UPDATE User u SET u.amount = u.amount + :bet WHERE u.name IN :pickList";
 
        try {
 
-            Query query =  em.createQuery(jpql);
+            Query createQuery =  em.createQuery(jpql);
 
-            query.setParameter("bet", requestDTO.getBet());
-            query.setParameter("pickList", pickList);
+            createQuery.setParameter("bet", drawRequestDTO.getBet());
+            createQuery.setParameter("pickList", pickList);
     
-            return query.executeUpdate();
+            return createQuery.executeUpdate();
            
        } catch (Exception e) {
 
