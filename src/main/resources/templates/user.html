@@ -16,7 +16,7 @@
         <form class="was-validated" onsubmit="return false;">
           <div class="form-group">
             <label class="font-weight-bolder" for="uname">Username:</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter username" name="name" required>
+            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="name" autocomplete="false" require>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">입력해주십쇼</div>
           </div>
@@ -24,28 +24,6 @@
         </form>
       </div>
   </body>
-  <script>
-    
-      function createUser() {
-        let name = document.getElementById('name').value;
+  <script src="js/user.js"></script>
 
-        fetch("/api/v1/user",{
-          method : 'POST',
-          body : JSON.stringify({name}),
-          headers: {'Content-Type': 'application/json'}
-        }).then(res => {
-          if(res.ok){
-            document.location = "/"
-          }else{
-            return res.json()
-          }
-        }).then(json => {  
-          if(json.errCode == 'DUP'){
-            alert("중복되는 이름입니다.");
-          }else{
-            alert('오류가 발생하였습니다. ['+res.status+']');
-          }
-        })
-      }
-  </script>
 </html>

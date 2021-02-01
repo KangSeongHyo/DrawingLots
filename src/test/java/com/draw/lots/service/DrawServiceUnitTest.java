@@ -10,7 +10,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 
 public class DrawServiceUnitTest {
@@ -19,8 +18,7 @@ public class DrawServiceUnitTest {
 
 
     @Test
-    public void 유저추첨하기(){
-        System.out.println(LocalDateTime.now().getYear());        
+    public void 유저추첨하기(){ 
        
         List<String> nameList = new ArrayList<>();
         int people = 1;

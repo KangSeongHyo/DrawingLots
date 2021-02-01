@@ -32,7 +32,7 @@ public class ViewController {
         return modelAndView;
     }
 
-    @GetMapping("/create/user")
+    @GetMapping("/user")
     public ModelAndView viewRegister() {
         
         ModelAndView modelAndView = new ModelAndView("user");

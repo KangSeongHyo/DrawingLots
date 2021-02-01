@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-public class CalanderJpaTest {
+public class CalendarJpaTest {
 
     @Autowired
     EntityManager em;
@@ -35,6 +35,5 @@ public class CalanderJpaTest {
         assertEquals(year,actualCalender.getYear());
 
     }
-
     
 }
