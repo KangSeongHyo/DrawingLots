@@ -1,0 +1,4 @@
+FROM ubuntu:21.04
+WORKDIR /app
+EXPOSE 80
+VOLUME ["/data"]
