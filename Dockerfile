@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
-WORKDIR /app
-EXPOSE 80
-VOLUME ["/data"]
+FROM openjdk:11-jdk-alpine
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
