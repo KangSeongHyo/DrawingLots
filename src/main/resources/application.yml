@@ -1,18 +1,4 @@
-spring:
-    datasource:
-        url: jdbc:postgresql://127.0.0.1:5432/project
-        username: postgres
-        password: hr
-    jpa:
-        show-sql: true
-        open-in-view: false
-        hibernate:
-            ddl-auto: create-drop
-    redis:
-        host: 127.0.0.1
-        port: 6379
 
-        
 logging: 
     level: 
         org.hibernate.type.descriptor.sql: trace
