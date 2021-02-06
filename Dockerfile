@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-slim as builder
+FROM openjdk:8-jdk-slim as builder
 
 COPY gradlew .
 COPY gradle gradle
@@ -8,7 +8,7 @@ COPY src src
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 
-FROM openjdk:8-jre-slim
+FROM openjdk:8-jdk-slim
 COPY --from=builder build/libs/*.jar app.jar
 ENTRYPOINT ["java","-jar","-Dspring.profiles.active=gcp","/app.jar"]
 EXPOSE 8080
