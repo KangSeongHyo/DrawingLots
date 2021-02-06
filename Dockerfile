@@ -1,6 +1,14 @@
+FROM openjdk:8-jre-slim as builder
+
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle . 
+COPY src src
+RUN chmod +x ./gradlew
+RUN ./gradlew bootJar
+
 FROM openjdk:8-jre-slim
-RUN ./gradlew build
-ARG build/libs/lots-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","-Dspring.profiles.active=gcp","app.jar"]
+COPY --from=builder build/libs/*.jar app.jar
+ENTRYPOINT ["java","-jar","-Dspring.profiles.active=gcp","/app.jar"]
 EXPOSE 8080
