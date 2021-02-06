@@ -13,12 +13,10 @@
     <div class="container">
         <h1 class="font-weight-bolder mt-5">유저 등록</h1>
         <p><abbr>이름은 중복 불가능입니다.</abbr><mark>Only 한글</mark></p>
-        <form class="was-validated" onsubmit="return false;">
+        <form onsubmit="return false;">
           <div class="form-group">
             <label class="font-weight-bolder" for="uname">Username:</label>
-            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="name" autocomplete="false" require>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">입력해주십쇼</div>
+            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="name" autocomplete="off" require>
           </div>
           <button type="submit" class="btn btn-primary w-100" onclick="createUser()">등록</button>
         </form>
