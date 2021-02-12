@@ -1,9 +1,11 @@
 package com.draw.lots.service;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,8 +20,10 @@ public class DrawServiceUnitTest {
 
 
     @Test
-    public void 유저추첨하기(){ 
-       
+    public void 유저추첨하기(){
+        
+        System.out.println(LocalDate.of(2021, 2, 11).getDayOfWeek());
+
         List<String> nameList = new ArrayList<>();
         int people = 1;
        

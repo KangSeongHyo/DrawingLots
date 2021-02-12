@@ -2,8 +2,11 @@ package com.draw.lots.controller;
 
 import java.util.List;
 
+import com.draw.lots.controller.dto.CalendarDTO;
 import com.draw.lots.controller.dto.DrawRequestDTO;
+import com.draw.lots.controller.dto.RequestDTO;
 import com.draw.lots.domain.user.User;
+import com.draw.lots.service.CalendarService;
 import com.draw.lots.service.DrawService;
 
 import org.springframework.stereotype.Controller;
@@ -14,21 +17,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * CalendarViewController
- */
-
 @Controller
 @RequiredArgsConstructor
 public class ViewController {
 
     private final DrawService drawService;
+    private final CalendarService calendarService;
 
     @GetMapping("/calendar")
-    public ModelAndView viewCalendar() throws Exception{
+    public ModelAndView viewCalendar(@ModelAttribute RequestDTO requestDTO) throws Exception{
         
         ModelAndView modelAndView = new ModelAndView("calendar");
-        
+        CalendarDTO calendarDTO = calendarService.getCalendarList(requestDTO);
+        modelAndView.addObject("calendarDTO",  calendarDTO);
         return modelAndView;
     }
 
@@ -54,13 +55,6 @@ public class ViewController {
         
         List<User> pickUserList = drawService.drawingLots(drawRequestDTO);
         modelAndView.addObject("pickUserList", pickUserList);
-        
-        return modelAndView;
-    }
-
-    @GetMapping("/result")
-    public ModelAndView viewResults() {
-        ModelAndView modelAndView = new ModelAndView("result");
         
         return modelAndView;
     }

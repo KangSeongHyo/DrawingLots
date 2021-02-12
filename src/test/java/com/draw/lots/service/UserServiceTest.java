@@ -60,8 +60,7 @@ public class UserServiceTest {
         String key = "USER_NAME";
        
         HashOperations<String,String,Integer> hashOperations= redisTemplate.opsForHash();
-        Set<String> a = hashOperations.keys(key);
-
+        
         hashOperations.put(key, "김철수", 0);
         hashOperations.put(key, "김수철", 0);
 

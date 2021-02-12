@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/calendar.css" type="text/css">
+</head>
+  <body style="background-color: rgb(220, 233, 233);" >
+
+    <div class="container container-fluid mt-5">
+        <div class="wrapper" style="box-shadow: 0px 1px 1px 3px #9AB;">
+            <div class="month">
+                <ul>
+                    <li id="prev" class="prev">&#10094;</li>
+                    <li id="next" class="next">&#10095;</li>              
+                    <li id="month" th:value="${calendarDTO.month}" th:text="|${calendarDTO.month}월|"><br></li>
+                    <span id="year" style="font-size:18px" th:value="${calendarDTO.year}" th:text="${calendarDTO.year}"></span>
+                </ul>
+            </div>
+            
+            <ul class="weekdays">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li class="text-primary">Sa</li>
+                <li class="text-danger">Su</li>
+            </ul>
+            
+            <ul class="days week">
+                <li th:each="num :${#numbers.sequence(1,{calendarDTO.startDay})}">-</li>
+                    <th:block th:each="calendar: ${calendarDTO.calendarList}">
+                        <li>[[${calendar.day}]]
+                            <th:block th:each=" data : ${calendar.calendarDataList}">
+                                <th:block th:switch="${data.userId%4}">
+                                    <div th:case="0" class="badge-info">[[${data.name}]]</div>
+                                    <div th:case="1" class="badge-success">[[${data.name}]]</div>
+                                    <div th:case="2" class="badge-danger">[[${data.name}]]</div>
+                                    <div th:case="3" class="badge-primary">[[${data.name}]]</div>
+                                </th:bock>
+                            </th:block>
+                        </li>
+                    </th:block>
+                </li>
+            </ul>
+        </div>
+    </div>   
+
+  </body>
+  <script src="js/calendar.js"></script>
+</html>

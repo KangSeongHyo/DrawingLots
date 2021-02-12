@@ -13,9 +13,10 @@ spring:
         port: 6379
 
         
-logging: 
-    level: 
-        org.hibernate.type.descriptor.sql: trace
+logging:
+  level:
+    root: INFO
+    
         
     
 

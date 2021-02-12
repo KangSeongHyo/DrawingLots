@@ -52,6 +52,10 @@ public class DrawService {
         for(int number : numberList){
             pickList.add(nameList.get(number));
         }
+        int bet = drawRequestDTO.getBet();
+        bet/=count;
+        drawRequestDTO.setBet(bet);
+        
         userService.updateAmount(pickList, drawRequestDTO);
         List<User> pickUserList= userService.getUserList(pickList);
         calendarService.addResultInCalendar(pickUserList, drawRequestDTO);

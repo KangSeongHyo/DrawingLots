@@ -1,64 +1,52 @@
 package com.draw.lots.domain.calendar;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumns;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.draw.lots.domain.user.User;
-
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import com.draw.lots.domain.calendar.pk.CalendarPK;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
+
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 @Table(name = "Calendar")
+@IdClass(CalendarPK.class)
 public class Calendar {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; 
-
     private int year;
     
+    @Id
     private int month;
     
+    @Id
     private int day;
 
-    private long userId;
-
-    private String title;
-
-    @ColumnDefault("0")
-    private int bet;
-
-    @CreatedDate
-    private LocalDateTime createdDate;
-
-    @LastModifiedDate
-    private LocalDateTime lastModifiedDate;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private User user;
+    @MapsId
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumns({
+        @JoinColumn(name = "year",referencedColumnName = "year"),
+        @JoinColumn(name = "month",referencedColumnName = "month"),
+        @JoinColumn(name = "day",referencedColumnName = "day")
+    })
+    List<CalendarData> calendarDataList;
 
 }
